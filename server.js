@@ -29,7 +29,7 @@ const corsOptions = {
 };
 
 // Apply CORS middleware with options
-app.use(cors(corsOptions));
+app.use(cors());
 
 const uri = 'mongodb+srv://Sucf2024:SucfDB@cluster0.ziafmsr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri);
