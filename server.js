@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: ["https://sucf-frontend-tralier.vercel.app"], // Ensure the correct frontend URL
+    origin: ["https://sucf-frontend-tralier.vercel.app", "http://192.168.80.59:5173", "http://localhost:5173"], // Ensure the correct frontend URL
     methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
