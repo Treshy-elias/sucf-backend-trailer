@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Define the whitelist (replace with your frontend URL)
 const whitelist = [
-    'https://your-vercel-app.vercel.app',
+    'https://sucf-frontend-tralier.vercel.app',
     'http://localhost:5173',
     'http://localhost:5174',
     'http://192.168.80.59:5173'
