@@ -12,7 +12,11 @@ const app = express();
 app.use(express.json());
 
 // Allow CORS from all origins
-app.use(cors());
+app.use(cors({
+    origin: ["https://sucf-frontend-tralier.vercel.app"],
+    methods:["POST", "GET", "PUT", "DELETE"],
+    credentials: true
+}));
 
 const uri = 'mongodb+srv://Sucf2024:SucfDB@cluster0.ziafmsr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri);
