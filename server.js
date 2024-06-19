@@ -11,25 +11,8 @@ import AttendanceRoute from './routes/AttendanceRoute.js';
 const app = express();
 app.use(express.json());
 
-// Define the whitelist (replace with your actual frontend URL)
-const whitelist = ['https://sucf-frontend-tralier.vercel.app/login', 'https://sucf-frontend-tralier.vercel.app/', 'http://localhost:5173/login', 'http://localhost:5174/login'];
-
-// Configure CORS options
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
-};
-
-// Apply CORS middleware with options
-app.use(cors(corsOptions));
+// Allow CORS from all origins
+app.use(cors());
 
 const uri = 'mongodb+srv://Sucf2024:SucfDB@cluster0.ziafmsr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(uri);
