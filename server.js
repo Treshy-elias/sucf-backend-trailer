@@ -12,11 +12,17 @@ const app = express();
 app.use(express.json());
 
 // Define the whitelist (replace with your frontend URL)
-const whitelist = ['https://your-vercel-app.vercel.app', 'http://localhost:5173', 'http://localhost:5174'];
+const whitelist = [
+    'https://your-vercel-app.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://192.168.80.59:5173'
+];
 
 // Configure CORS options
 const corsOptions = {
     origin: function (origin, callback) {
+        console.log("Origin: ", origin); // Log origin for debugging
         if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
