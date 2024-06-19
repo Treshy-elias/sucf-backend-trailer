@@ -11,24 +11,21 @@ import AttendanceRoute from './routes/AttendanceRoute.js';
 const app = express();
 app.use(express.json());
 
-// Define the whitelist (replace with your frontend URL)
-const whitelist = [
-    'https://sucf-frontend-tralier.vercel.app',
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://192.168.80.59:5173'
-];
+// Define the whitelist (replace with your actual frontend URL)
+const whitelist = ['https://sucf-frontend-tralier.vercel.app', 'http://localhost:5173', 'http://localhost:5174'];
 
 // Configure CORS options
 const corsOptions = {
     origin: function (origin, callback) {
-        console.log("Origin: ", origin); // Log origin for debugging
         if (whitelist.indexOf(origin) !== -1 || !origin) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
         }
-    }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 
 // Apply CORS middleware with options
