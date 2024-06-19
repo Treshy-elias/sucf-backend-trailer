@@ -11,10 +11,9 @@ import AttendanceRoute from './routes/AttendanceRoute.js';
 const app = express();
 app.use(express.json());
 
-// Allow CORS from all origins
 app.use(cors({
-    origin: ["https://sucf-frontend-tralier.vercel.app"],
-    methods:["POST", "GET", "PUT", "DELETE"],
+    origin: ["https://sucf-frontend.vercel.app"], // Ensure the correct frontend URL
+    methods: ["POST", "GET", "PUT", "DELETE"],
     credentials: true
 }));
 
@@ -30,25 +29,22 @@ app.use('/auth', AuthRoute);
 app.use('/users', UserRoute);
 app.use('/attendance', AttendanceRoute);
 
-// Configure Cloudinary
 cloudinary.config({
     cloud_name: 'dlgdtcfpq',
     api_key: '597981243245951',
     api_secret: '_P1Kx9tfGxhMysCYEFYSl9Bui2g'
 });
 
-// Configure Multer storage to upload image files directly to Cloudinary
 const imageStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'UserProfilePic', // Folder for image files
-        resource_type: 'image' // Only allow image files
+        folder: 'UserProfilePic',
+        resource_type: 'image'
     }
 });
 
 const imageUpload = multer({ storage: imageStorage });
 
-// Define a POST route to handle image file uploads
 app.post('/upload/image', imageUpload.single('image'), (req, res) => {
     const file = req.file;
 
@@ -58,13 +54,13 @@ app.post('/upload/image', imageUpload.single('image'), (req, res) => {
 
     res.status(200).send({
         message: 'Image file uploaded successfully.',
-        fileUrl: file.path // Cloudinary URL of the uploaded file
+        fileUrl: file.path
     });
 });
 
 app.get("/", (req, res) => {
-    res.json("HomePage")
-})
+    res.json("HomePage");
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
