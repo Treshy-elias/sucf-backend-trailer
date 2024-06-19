@@ -63,7 +63,7 @@ app.post('/upload/image', imageUpload.single('image'), (req, res) => {
 });
 
 app.get("/", (req, res) => {
-    res.json("Home")
+    res.json("HomePage")
 })
 
 const PORT = process.env.PORT || 3000;
